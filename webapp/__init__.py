@@ -6,7 +6,9 @@ app = Flask(__name__)
         
 @app.route("/")
 def index():
+    products = {}
         
+    
     return render_template("products_list.html")
 
 if __name__ == "__main__":
