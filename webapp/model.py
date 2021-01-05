@@ -13,6 +13,7 @@ class User(db.Model):
 
     ads = db.relationship('Ad', backref='User')
 
+
 class Ad(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False) 
@@ -27,26 +28,43 @@ class Ad(db.Model):
     category_4_id = db.Column(db.String, db.ForeignKey('Ad_category_4.id'), nullable=False)
     location_id = db.Column(db.String, db.ForeignKey('Location.id'), nullable=False)
 
+
 class Ad_category_1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     cat_1 = db.relationship('Ad', backref='Ad_category_1')
+
+    cat_1a = db.relationship('Ad_category_2', backref='Ad_category_1')
+
 
 class Ad_category_2(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     cat_2 = db.relationship('Ad', backref='Ad_category_2')
 
+    category_1_id = db.Column(db.String, db.ForeignKey('Ad_category_1.id'), nullable=False)
+    
+    cat_2a = db.relationship('Ad_category_3', backref='Ad_category_2')
+
+
 class Ad_category_3(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     cat_3 = db.relationship('Ad', backref='Ad_category_3')
+
+    category_2_id = db.Column(db.String, db.ForeignKey('Ad_category_2.id'), nullable=False)
+
+    cat_3a = db.relationship('Ad_category_4', backref='Ad_category_3')
+
 
 class Ad_category_4(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     cat_4 = db.relationship('Ad', backref='Ad_category_4')
 
+    category_3_id = db.Column(db.String, db.ForeignKey('Ad_category_3.id'), nullable=False)
+    
+    
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
