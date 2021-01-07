@@ -5,12 +5,12 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), index=True, unique=True, nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
-    phone_number = dbColumn(db.Integer(11), index=True, unique=True, nullable=False)
-    email = db.Column(db.String(50), index=True, unique=True, nullable=False)
-    role = db.Column(db.String(10), index=True)
-
+    phone_number = db.Column(db.Integer(12), unique=True, nullable=False)
+    email = db.Column(db.String(50), unique=True, nullable=False)
+    role = db.Column(db.String(10)
+    
     ads = db.relationship('Ad', backref='User')
 
 
@@ -22,47 +22,47 @@ class Ad(db.Model):
     price = db.Column(db.Integer, nullable=False)
     published = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
-    category_1_id = db.Column(db.String, db.ForeignKey('Ad_category_1.id'), nullable=False)
-    category_2_id = db.Column(db.String, db.ForeignKey('Ad_category_2.id'), nullable=False)
-    category_3_id = db.Column(db.String, db.ForeignKey('Ad_category_3.id'), nullable=False)
-    category_4_id = db.Column(db.String, db.ForeignKey('Ad_category_4.id'), nullable=False)
+    categoryone_id = db.Column(db.String, db.ForeignKey('CategoryOne.id'), nullable=False)
+    categorytwo_id = db.Column(db.String, db.ForeignKey('CategoryTwo.id'), nullable=False)
+    categorythree_id = db.Column(db.String, db.ForeignKey('CategoryThree.id'), nullable=False)
+    categoryfour_id = db.Column(db.String, db.ForeignKey('CategoryFour.id'), nullable=False)
     location_id = db.Column(db.String, db.ForeignKey('Location.id'), nullable=False)
 
 
-class Ad_category_1(db.Model):
+class CategoryOne(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    cat_1 = db.relationship('Ad', backref='Ad_category_1')
+    cat_1 = db.relationship('Ad', backref='CategoryOne')
 
-    cat_1a = db.relationship('Ad_category_2', backref='Ad_category_1')
+    cat_1a = db.relationship('CategoryTwo', backref='CategoryOne')
 
 
-class Ad_category_2(db.Model):
+class CategoryTwo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    cat_2 = db.relationship('Ad', backref='Ad_category_2')
+    cat_2 = db.relationship('Ad', backref='CategoryTwo')
 
-    category_1_id = db.Column(db.String, db.ForeignKey('Ad_category_1.id'), nullable=False)
+    category_1_id = db.Column(db.String, db.ForeignKey('CategoryOne.id'), nullable=False)
     
-    cat_2a = db.relationship('Ad_category_3', backref='Ad_category_2')
+    cat_2a = db.relationship('CategoryThree', backref='CategoryTwo')
 
 
-class Ad_category_3(db.Model):
+class CategoryThree(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    cat_3 = db.relationship('Ad', backref='Ad_category_3')
+    cat_3 = db.relationship('Ad', backref='CategoryThree')
 
-    category_2_id = db.Column(db.String, db.ForeignKey('Ad_category_2.id'), nullable=False)
+    category_2_id = db.Column(db.String, db.ForeignKey('CategoryTwo.id'), nullable=False)
 
-    cat_3a = db.relationship('Ad_category_4', backref='Ad_category_3')
+    cat_3a = db.relationship('CategoryFour', backref='CategoryThree')
 
 
-class Ad_category_4(db.Model):
+class CategoryFour(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-    cat_4 = db.relationship('Ad', backref='Ad_category_4')
+    cat_4 = db.relationship('Ad', backref='CategoryFour')
 
-    category_3_id = db.Column(db.String, db.ForeignKey('Ad_category_3.id'), nullable=False)
+    category_3_id = db.Column(db.String, db.ForeignKey('CategoryThree.id'), nullable=False)
     
     
 class Location(db.Model):
