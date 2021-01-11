@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from webapp.model import db
+from webapp.model import db, Ad
 
 def create_app():
     app = Flask(__name__)
@@ -7,13 +7,9 @@ def create_app():
     db.init_app(app)
 
         
-@app.route("/")
-def index():
-    products = {}
-        
-    
-    return render_template("products_list.html")
+    @app.route("/")
+    def index():
+        products = Ad.query.all()
+        return render_template("products_list.html", products=products)
 
-print(product_list)
-if __name__ == "__main__":
-    app.run()
+    return app

@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 html = open ("templates\products_list.html", 'r', encoding='utf-8')
 soup = BeautifulSoup(html, 'html.parser')
 products = soup.find_all('a')
-print(products.text.strip())
-print(products.get('href'))
-#product_list = []
+print(products[0].text.strip())
+#print(products.get('href'))
+#product_list = [1, 2, 3]
 
 #for product in products:
     #product_list.append({'name': product.text.strip(), 'link': product.get('href')})
