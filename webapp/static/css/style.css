@@ -1,0 +1,35 @@
+#product_name {
+    margin-left: 220px;
+    color: rgb(0, 0, 0);
+    font-weight: 1;
+    text-decoration: none;
+    font-family: verdana;
+    font-size: 26px;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#product_text {
+    margin-left: 220px;
+    color: rgb(0, 0, 0);
+    font-weight: 1;
+    text-decoration: none;
+    font-family: verdana;
+    font-size: 20px;
+    margin-right: 220px;
+
+}
+
+#product_price {
+    margin-left: 220px;
+    color: rgb(0, 0, 0);
+    font-weight: 1;
+    text-decoration: none;
+    font-family: verdana;
+    font-size: 20px;
+    margin-right: 220px;
+
+}
