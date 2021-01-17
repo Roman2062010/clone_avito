@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from webapp.model import db, Ad
+from webapp.model import db, Ad, Location
 
 def create_app():
     app = Flask(__name__)
@@ -11,5 +11,10 @@ def create_app():
     def index():
         products = Ad.query.all()
         return render_template("products_list.html", products=products)
+    return app
 
+
+    @app.route("/base")
+    def base():
+        return render_template("base.html")
     return app
