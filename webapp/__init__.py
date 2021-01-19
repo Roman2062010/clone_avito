@@ -11,10 +11,20 @@ def create_app():
     def index():
         products = Ad.query.all()
         return render_template("products_list.html", products=products)
-    return app
+    
+
+    #@app.route("/<region_name>/")
+    #def region(region_name):
+        #print(region_name)
+        #products = Ad.query.join(Location,Ad.location_id == Location.id).filter(Location.name == region_name).all()
+        #return render_template("products_list.html", products=products)
+    #return app
 
 
     @app.route("/base")
     def base():
-        return render_template("base.html")
+        products = Ad.query.all()
+        return render_template("base.html", products=products)
+
+
     return app
