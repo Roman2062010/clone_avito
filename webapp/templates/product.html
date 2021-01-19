@@ -37,12 +37,11 @@
         </header>
         <div class="container">
             <div class="row">
-            {% for product in products %}
                 <div class="card" style="width: 340px;">
-                    <img src="{{ product.image }}" class="align-self-center" style=" height: 250px; ">
+                    <img src="{{ product.image }}" class="align-self-start mr-3" style=" height: 250px; ">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 45px;"><a href="/product/{{ product.id }}/">{{ product.name }}</h5></a>
-                    <p class="card-text" style="height: 70px;">{{ product.text|truncate(90) }}...</p>
+                    <h5 class="card-title" style="height: 45px;"><a href="#">{{ product.name }}</h5></a>
+                    <p class="card-text" style="height: 70px;">{{ product.text|truncate(2000) }}...</p>
                     </div>
                     <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ product.price }} &#x20bd</li>
@@ -52,10 +51,9 @@
                     </ul>
                     <div class="card-body">
                     <a href="{{ product.url }}" class="btn btn-primary">Подробнее</a>
-
                     </div>
                 </div>
-                    {% endfor %}
+                    
             </div>
             <!--<div class="row">
 
