@@ -11,7 +11,7 @@ class User(db.Model):
     phone_number = db.Column(db.Integer, unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     role = db.Column(db.String(10))
-
+    
 
 class Ad(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,10 +27,9 @@ class Ad(db.Model):
     categoryfour_id = db.Column(db.Integer, db.ForeignKey('category_four.id'), nullable=True)
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
     image = db.Column(db.String)
-
+    
     user = db.relationship("User", backref="ad")
-    local = db.relationship("Location", backref="ad")
-
+    location = db.relationship("Location", backref="ad")
 
 class CategoryOne(db.Model):
     id = db.Column(db.Integer, primary_key=True)
