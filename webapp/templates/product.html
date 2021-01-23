@@ -25,6 +25,7 @@
         </script>
         <meta charset="utf-8">
         <title>clone_avito</title>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <!--<link href= "/static/css/style.css" rel="stylesheet" type="text/css" >-->
     </head>
     <body>
@@ -37,60 +38,24 @@
         </header>
         <div class="container">
             <div class="row">
-                <div class="card" style="width: 340px;">
-                    <img src="{{ product.image }}" class="align-self-start mr-3" style=" height: 250px; ">
-                    <div class="card-body">
-                    <h5 class="card-title" style="height: 45px;"><a href="#">{{ product.name }}</h5></a>
-                    <p class="card-text" style="height: 70px;">{{ product.text|truncate(2000) }}...</p>
+                <div class="media-body" style="width: auto;">
+                    <img src="{{ product.image }}" class="rounded float-left" style=" height: 250px;">
+                        <div class="media">
+                            <h4 class="list-group"><a href="#"><ul style="padding-left: 20px;">{{ product.name }}</ul></h4></a>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <ul class="list-group-item ">{{ product.price }} &#x20bd</ul>
+                            <li class="list-group-item">Опубликовано {{ product.published.strftime('%d.%m.%Y') }}</li>
+                            <li class="list-group-item">{{ product.user.username }}</li>
+                            <li class="list-group-item">{{ product.user.phone_number }}</li>
+                            <ul class="list-group-item" style="height: auto;">{{ product.text|truncate(3000) }}</ul>
+                            <ul class="list-group-item" style="height: auto;">м. {{ product.location.name }}</ul>
+                        </ul>
+                    <div class="media-body">
+                    <!--<a href="{{ product.url }}" class="btn btn-primary" style="margin-left: 350px;">Подробнее</a>-->
                     </div>
-                    <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ product.price }} &#x20bd</li>
-                    <li class="list-group-item">Опубликовано {{ product.published.strftime('%d.%m.%Y') }}</li>
-                    <li class="list-group-item">{{ product.user.username }}</li>
-                    <li class="list-group-item">{{ product.user.phone_number }}</li>
-                    </ul>
-                    <div class="card-body">
-                    <a href="{{ product.url }}" class="btn btn-primary">Подробнее</a>
-                    </div>
-                </div>
-                    
+                </div>   
             </div>
-            <!--<div class="row">
-
-
-
-                {% for product in products %}
-                <div class="col-2">
-                    <img src="{{ product.image }}" width="200" height="80">
-                    
-                </div>
-                <div class="col-7">
-                    <h2>
-                        <a class=name href="{{ product.url }}">{{ product.name }}</a>
-                    </h2>
-                </div>
-                <div class="col-3">
-                        <p>
-                            {{ product.price }} руб
-                        <p>
-                </div>
-                <div class="col-2">
-                    <p>
-                        {{ текст }}
-                    </p>
-                </div>
-                <div class="col-7">
-                    <p>
-                        {{ product.text }}
-                    <p>
-                </div>
-                <div class="col-3">
-                    <p>
-                        {{ текст }}
-                    <p>
-                </div>
-                {% endfor %}
-            </div>-->    
         </div>                    
     </body>     
 </html>
