@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from webapp.forms import LoginForm
-from webapp.model import db, Ad, Location, User
+from webapp.model import db, Ad, Location, User, CategoryOne
 
 
 def create_app():
@@ -14,9 +14,17 @@ def create_app():
         products = Ad.query.all()
         users = User.query.all()
         locations = Location.query.all()
-        return render_template("products_list.html", products=products, users=users, locations=locations)
+        categories_one = CategoryOne.query.all()
+        return render_template("products_list.html", products=products, users=users, locations=locations, categories_one=categories_one)
 
+
+    @app.route("/categories_one/<categoryone_id>/")
+    def category_one():
+        products = Ad.query.join(CategoryOne,Ad.categoryone_id == CategoryOne.id).filter(CategoryOne.id == categoryone_id).all()
+        categories_one = CategoryOne.query.all()
+        return render_template("products_list.html", products=products, categories_one=categories_one)
     
+
     @app.route('/login')
     def login():
         title = "Авторизация" 

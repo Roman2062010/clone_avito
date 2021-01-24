@@ -27,59 +27,57 @@
         <title>clone_avito</title>
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <!--<link href= "/static/css/style.css" rel="stylesheet" type="text/css" >-->
-        
     </head>
     <body>
         <header>
             <div class="container-fluid">
-                <a href="http://127.0.0.1:5000/" >
-                    <img src="\static\images\logo_avito.png" width="200" height="80">
-                    
-                    <a class="btn btn-primary" style="margin-left: 793px" href="http://127.0.0.1:5000/login" role="button">Войти</a>
-                    <a class="btn btn-primary" style="margin-left: 3px" href="#" role="button">Регистрация</a>
-                    
-                
+                <a href="http://127.0.0.1:5000/" ><img src="\static\images\logo_avito.png" width="200" height="80"></a>
+                <a class="btn btn-primary" style="margin-left: 793px" href="http://127.0.0.1:5000/login" role="button">Войти</a>
+                <a class="btn btn-primary" style="margin-left: 3px" href="#" role="button">Регистрация</a>
             </div>
         </header>
-        <div class="dropdown " style="color: #5c0186; margin-left: 190px; margin-bottom: 15px; ">
+        <div class="btn-group" style="margin-left: 190px;">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 Местоположение
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
                 {% for location in locations %}
-                <a target="_blank" class="dropdown-item" href="/locations/{{ location.id}}/">{{ location.name }}</a>
+                    <a target="_blank" class="dropdown-item" href="/locations/{{ location.id}}/">{{ location.name }}</a>
                 {% endfor %}
-              </div>
-              
-            
-        
-
+            </div>
         </div>
-        
+        <div class="btn-group"> 
+            <a class="btn btn-secondary dropdown-toggle" style="margin-left: 3px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Комплектующие
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" >
+                {% for categoryone in categories_one %}
+                    <a target="_blank" class="dropdown-item" href="/categories_one/{{ categoryone.id}}/">{{ categoryone.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
         <h3 style="margin-left: 190px; margin-bottom: 15px; margin-top: 30px;  ">Продажа видеокарт в Москве</h3>
         <div class="container">
             <div class="row">
-            {% for product in products %}
+                {% for product in products %}
                 <div class="card" style="width: 340px;">
                     <img src="{{ product.image }}" class="align-self-center" style=" height: 250px; ">
                     <div class="card-body">
-                    <h5 class="card-title" style="height: 45px;"><a target="_blank" href="/product/{{ product.id }}/">{{ product.name }}</h5></a>
-                    <p class="card-text" style="height: 70px;">{{ product.text|truncate(90) }}...</p>
+                        <h5 class="card-title" style="height: 45px;"><a target="_blank" href="/product/{{ product.id }}/">{{ product.name }}</h5></a>
+                        <p class="card-text" style="height: 70px;">{{ product.text|truncate(90) }}...</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ product.price }} &#x20bd</li>
-                    <!--<li class="list-group-item">Опубликовано {{ product.published.strftime('%d.%m.%Y') }}</li>-->
-                    <li class="list-group-item">{{ product.user.username }}</li>
-                    <!--<li class="list-group-item">{{ product.user.phone_number }}</li>-->
+                        <li class="list-group-item">{{ product.price }} &#x20bd</li>
+                        <!--<li class="list-group-item">Опубликовано {{ product.published.strftime('%d.%m.%Y') }}</li>-->
+                        <li class="list-group-item"><a target="_blank" href="/users/{{ product.user.id }}/">{{ product.user.username }}</a></li>
+                        <!--<li class="list-group-item">{{ product.user.phone_number }}</li>-->
                     </ul>
                     <div class="card-body">
-                    <a href="{{ product.url }}" class="btn btn-primary">Подробнее</a>
-
+                        <a href="{{ product.url }}" class="btn btn-primary">Подробнее</a>
                     </div>
                 </div>
-                    {% endfor %}
-            </div>
-            
+                {% endfor %}
+            </div>   
         </div>                    
     </body>     
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -30,6 +30,8 @@ class Ad(db.Model):
     
     user = db.relationship("User", backref="ad")
     location = db.relationship("Location", backref="ad")
+    categoryone = db.relationship("CategoryOne", backref="ad")
+
 
 class CategoryOne(db.Model):
     id = db.Column(db.Integer, primary_key=True)
