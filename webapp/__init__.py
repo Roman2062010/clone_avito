@@ -19,7 +19,7 @@ def create_app():
 
 
     @app.route("/categories_one/<categoryone_id>/")
-    def category_one():
+    def category_one(categoryone_id):
         products = Ad.query.join(CategoryOne,Ad.categoryone_id == CategoryOne.id).filter(CategoryOne.id == categoryone_id).all()
         categories_one = CategoryOne.query.all()
         return render_template("products_list.html", products=products, categories_one=categories_one)
