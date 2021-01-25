@@ -27,7 +27,6 @@ class Ad(db.Model):
     categoryfour_id = db.Column(db.Integer, db.ForeignKey('category_four.id'), nullable=True)
     location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
     image = db.Column(db.String)
-    
     user = db.relationship("User", backref="ad")
     location = db.relationship("Location", backref="ad")
     categoryone = db.relationship("CategoryOne", backref="ad")
